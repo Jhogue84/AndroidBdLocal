@@ -6,6 +6,7 @@
     <string name="btnModificar">Modificar</string>
     <string name="btnListarArticulos">Lista de Articulos</string>
     <string name="btnAdicionarmarcas">Adicionar Marcas</string>
+    <string name="btnListarMarcas">Lista de Marcas</string>
     <string name="etNombre">Digite el nombre</string>
     <string name="etDescripcion">Digite la Descripcion</string>
     <string name="etValor">Digite el valor</string>

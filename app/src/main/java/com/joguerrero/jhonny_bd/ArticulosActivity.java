@@ -105,15 +105,10 @@ public class ArticulosActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Articulo articulo = new Articulo();
                 articulo.eliminar(ArticulosActivity.this, id);
-                Toast.makeText(ArticulosActivity.this, "Se elimino el articulo"+id, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ArticulosActivity.this, " !!! Se elimino el articulo ¡¡¡", Toast.LENGTH_SHORT).show();
                 startActivity(getIntent());
             }
         }).show();
     }
 
-    private void irActivity(int i) {
-        Toast.makeText(this, "Detalle del articulo", Toast.LENGTH_SHORT).show();
-        //Intent intent = new Intent(ArticulosActivity.this, ArticuloDetalleActivity.class);
-        //startActivity(intent);
-    }
 }

@@ -24,7 +24,7 @@ public class BdOpenHelper extends SQLiteOpenHelper {
         String cadenaSql = "create table marcas (id integer primary key autoincrement, nombre text, descripcion text)";
         miDb.execSQL(cadenaSql);
         //otra tabla
-        cadenaSql = "create table articulos (id integer primary key autoincrement, nombre text, precio double, idMarca references marcas(id))";
+        cadenaSql = "create table articulos (id integer primary key autoincrement, nombre text, precio double, idMarca references marcas(id)) on delete no action on update cascade";
         miDb.execSQL(cadenaSql);
         //insertar marcas y articulos - NO recomendable
         cadenaSql ="insert into marcas (nombre, descripcion) values ('Dell copia','pc de escritorio')";

@@ -12,6 +12,12 @@
         android:theme="@style/Theme.Jhonny_bd"
         tools:targetApi="31">
         <activity
+            android:name=".MarcaDetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MarcaListaActivity"
+            android:exported="false" />
+        <activity
             android:name=".MarcaFormularioActivity"
             android:exported="false" />
         <activity

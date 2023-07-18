@@ -19,11 +19,11 @@
         android:gravity="center"/>
 
     <Button
-        android:id="@+id/btnAddMarca"
+        android:id="@+id/btnListarMarcas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="@string/btnAdicionarmarcas"
+        android:text="@string/btnListarMarcas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -34,5 +34,5 @@
         android:layout_marginTop="28dp"
         android:text="@string/btnListarArticulos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddMarca" />
+        app:layout_constraintTop_toBottomOf="@+id/btnListarMarcas" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,7 +26,7 @@ public class ArticuloFormActivity extends AppCompatActivity implements View.OnCl
     String accion;
     int idArticulo;
     TextView tvTtituloArt, tvIdArt;
-    EditText etNombreArt, etPrecio;
+    EditText etNombreArt, etPrecioArt;
     Button btnAccionArt, btnCancelarArt;
     Spinner spinner;
     int posicion;
@@ -40,7 +40,7 @@ public class ArticuloFormActivity extends AppCompatActivity implements View.OnCl
         tvTtituloArt = findViewById(R.id.tvTituloArt);
         tvIdArt = findViewById(R.id.tvIdArt);
         etNombreArt = findViewById(R.id.etNombreArt);
-        etPrecio = findViewById(R.id.etPrecioArt);
+        etPrecioArt = findViewById(R.id.etPrecioArt);
         btnAccionArt = findViewById(R.id.btnAccionArt);
         btnCancelarArt = findViewById(R.id.btnCancelarArt);
         spinner = findViewById(R.id.spinner);
@@ -64,7 +64,7 @@ public class ArticuloFormActivity extends AppCompatActivity implements View.OnCl
             Articulo articulo = new Articulo(idArticulo, this);
             tvIdArt.setText(""+idArticulo);
             etNombreArt.setText(articulo.getNombre());
-            etPrecio.setText(""+(int) articulo.getPrecio());
+            etPrecioArt.setText(""+(int) articulo.getPrecio());
         }
     }
 
@@ -81,7 +81,7 @@ public class ArticuloFormActivity extends AppCompatActivity implements View.OnCl
                 Marca marca = ((Marca) spinner.getItemAtPosition(i));
                 if (marca.getId() == idMarca) {
                     posicion = i;
-                    Log.e("iguales  ", ""+marca.getId()+" -> "+idMarca+" sel "+posicion);
+                    //Log.e("iguales  ", ""+marca.getId()+" -> "+idMarca+" sel "+posicion);
                 }
             }
             spinner.setSelection(posicion);
@@ -94,9 +94,9 @@ public class ArticuloFormActivity extends AppCompatActivity implements View.OnCl
         switch (view.getId()){
             case R.id.btnAccionArt:
                 if(accion.equals("Adicionar")){
-                    adicionar();
+                    validarCamposVacios(0);
                 }else{
-                    modificar(idArticulo);
+                    validarCamposVacios(idArticulo);
                 }
                 break;
             case R.id.btnCancelarArt:
@@ -108,14 +108,40 @@ public class ArticuloFormActivity extends AppCompatActivity implements View.OnCl
 
     }
 
+    private void validarCamposVacios(int idArticulo) {
+        String error= null;
+        if (etNombreArt.getText().toString().isEmpty()){
+            etNombreArt.setError("Campo obligatorio");
+            error +="1";
+        }
+        if (etPrecioArt.getText().toString().isEmpty()){
+            etPrecioArt.setError("El valor es obligatorio");
+            error +="2";
+        }
+        if (spinner.getSelectedItemPosition() == 0) {
+            // set error message on spinner
+            TextView errorSpn = (TextView) spinner.getSelectedView();
+            errorSpn.setError("Debe seleccionar la marca");
+            error +="3";
+        }
+        if (error == null){
+            if (idArticulo == 0){
+                adicionar();
+                //Toast.makeText(this, "ir adicionar"+ idMarca, Toast.LENGTH_SHORT).show();
+            }else {
+                modificar(idArticulo);
+            }
+
+        }
+    }
+
     private void modificar(int idAnterior) {
         Articulo articulo = new Articulo();
         articulo.setNombre(etNombreArt.getText().toString());
-        articulo.setPrecio(Double.parseDouble(etPrecio.getText().toString()));
+        articulo.setPrecio(Double.parseDouble(etPrecioArt.getText().toString()));
         //seleccionar el id del spinner
         Marca marca = (Marca) spinner.getSelectedItem();
         articulo.setIdMarca(marca.getId());
-        Toast.makeText(this, "idMarca "+marca.getId(), Toast.LENGTH_SHORT).show();
         articulo.modificar(this, idArticulo);
         Intent intent = new Intent(ArticuloFormActivity.this, ArticulosActivity.class);
         startActivity(intent);
@@ -127,7 +153,7 @@ public class ArticuloFormActivity extends AppCompatActivity implements View.OnCl
     private void adicionar() {
         Articulo articulo = new Articulo();
         articulo.setNombre(etNombreArt.getText().toString());
-        articulo.setPrecio(Double.parseDouble(etPrecio.getText().toString()));
+        articulo.setPrecio(Double.parseDouble(etPrecioArt.getText().toString()));
         //seleccionar el id del spinner
         Marca marca = (Marca) spinner.getSelectedItem();
         articulo.setIdMarca(marca.getId());

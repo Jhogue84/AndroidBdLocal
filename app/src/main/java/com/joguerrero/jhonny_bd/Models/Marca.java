@@ -83,10 +83,14 @@ public class Marca {
         String[][] datos = Marca.listarMarcas(context, filtro, orden);
         List<Marca> listaMarcas = new ArrayList<>();
         //validar si hay datos
+        Marca objMarca = new Marca();
+        objMarca.id=0;
+        objMarca.nombre="Seleccione la marca";
+        listaMarcas.add(objMarca);
         if (datos != null){
             //si hay datos
             for (int contador=0; contador < datos.length; contador++){
-                Marca objMarca = new Marca();
+                objMarca = new Marca();
                 objMarca.id = Integer.parseInt(datos[contador][0]);
                 objMarca.nombre = datos[contador][1];
                 objMarca.descripcion = datos[contador][2];
